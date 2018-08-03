@@ -1,4 +1,4 @@
 import Timer from './Timer.js';
 
-const timer = new Timer(() => console.log('Hello World!'));
+const timer = new Timer((dt) => console.log(dt));
 timer.start();

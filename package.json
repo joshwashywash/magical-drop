@@ -2,7 +2,7 @@
   "name": "magical-drop",
   "version": "1.0.0",
   "description": "clone of Magical Drop 3 for the Neo Geo",
-  "main": "public/index.js",
+  "main": "./public/js/index.js",
   "scripts": {
     "start": "serve ./public",
     "test": "echo \"Error: no test specified\" && exit 1"
