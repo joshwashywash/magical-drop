@@ -1,0 +1,37 @@
+html, body, .container {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .background, canvas {
+    top: 0;
+    left: 0;
+    position: absolute;
+  }
+  
+  .background {
+    animation: scroll 60s linear infinite;
+    background: black url('./assets/images/background.png');
+    height: 2944px;
+    width: 100%;
+  }
+  
+  canvas {
+    background: rgb(0, 0, 0, .5);
+    border: white solid;
+    display: block;
+    margin: auto;
+    bottom: 0;
+    right: 0;
+  }
+  
+  @keyframes scroll {
+    to {
+      transform: translate3d(0, -50%, 0);
+    }
+  }
