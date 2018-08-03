@@ -14,6 +14,8 @@
   "author": "Josh Oertel",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-config-google": "^0.9.1",
     "serve": "^9.4.0"
   },
   "dependencies": {},
