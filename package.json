@@ -15,5 +15,14 @@
   "license": "ISC",
   "devDependencies": {
     "serve": "^9.4.0"
-  }
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshwashywash/magical-drop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joshwashywash/magical-drop/issues"
+  },
+  "homepage": "https://github.com/joshwashywash/magical-drop#readme"
 }
