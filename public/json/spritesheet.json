@@ -1,0 +1,10 @@
+{
+  "url": "./assets/images/spritesheet.png",
+  "size": [48, 48],
+  "map": [
+    ["blue", [0, 0]],
+    ["red", [1, 0]],
+    ["orange", [1, 0]],
+    ["white", [1, 0]]
+  ]
+}
