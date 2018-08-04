@@ -23,29 +23,8 @@ class SpriteSheet {
     this.image = image;
     this.size = spec.size;
     /**
-     * @prop {Map<String, Array<Number>>} map String to sheet position
+     * @prop {Map} map String to sheet position
      */
     this.map = new Map(spec.map);
-  }
-  /**
-   * draws the corresponding sprite at the given destination
-   * @param {String} name identifier for sprite
-   * @param {CanvasRenderingContext2D} context to draw upon
-   * @param {Array<Number>} dest coordinates
-   */
-  draw(name, context, dest = [0, 0]) {
-    if (this.map.has(name)) {
-      const coords = this.map.get(name).map((coord, i) => {
-        return coord * this.size[i % 2];
-      });
-
-      context.drawImage(
-        this.image,
-        ...coords,
-        ...this.size,
-        ...dest,
-        ...this.size
-      );
-    }
   }
 }
