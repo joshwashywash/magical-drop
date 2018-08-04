@@ -3,13 +3,13 @@
  */
 export default class Sprite {
   /**
-   * @param {String} name to be given to SpriteRenderer
-   * @param {Array<Number>} size of the sprite's image [width, height]
+   * @param {String} name to be given to Renderer
    * @param {Array<Number>} pos of the sprite
+   * @param {Array<Number>} size of the sprite's image [width, height]
    */
-  constructor(name, size, pos = [0, 0]) {
+  constructor(name, pos = [0, 0], size = [48, 48]) {
     this.name = name;
-    this.size = size;
     this.pos = pos;
+    this.size = size;
   }
 }

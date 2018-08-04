@@ -7,6 +7,6 @@ const context = canvas.getContext('2d');
 
 loadSheet('spritesheet').then((sheet) => {
   const renderer = new Renderer(sheet);
-  renderer.sprites.push(new Sprite('red', [48, 48]));
+  renderer.sprites.push(new Sprite('red'));
   renderer.draw(context);
 });

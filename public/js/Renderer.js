@@ -8,7 +8,7 @@ export default class Renderer {
   constructor(sheet) {
     this.sheet = sheet;
   /**
-   * @prop {Array<Sprites>} sprites
+   * @prop {Array<Sprite>} sprites
    */
     this.sprites = [];
   }

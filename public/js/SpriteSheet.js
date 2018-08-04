@@ -1,4 +1,5 @@
 import {loadJSON, loadImage} from './loaders.js';
+import {flatten} from './util.js';
 
 /**
  * @param {String} name hint for loading spec
@@ -6,7 +7,9 @@ import {loadJSON, loadImage} from './loaders.js';
  */
 export default function loadSheet(name) {
   return loadJSON(`./json/${name}.json`).then((spec) => {
-    return loadImage(spec.url).then((image) => new SpriteSheet(image, spec));
+    return loadImage(spec.url).then((image) => {
+      return new SpriteSheet(image, spec.map);
+    });
   });
 }
 
@@ -17,14 +20,13 @@ class SpriteSheet {
   /**
    * @constructs SpriteSheet
    * @param {Image} image of all sprites
-   * @param {JSON} spec contains sprite data
+   * @param {Object} map contains mappings of all sprites within the sheet
    */
-  constructor(image, spec) {
+  constructor(image, map) {
     this.image = image;
-    this.size = spec.size;
     /**
-     * @prop {Map} map String to sheet position
+     * @prop {Map} map string to position in sheet
      */
-    this.map = new Map(spec.map);
+    this.map = new Map(flatten(Object.values(map)));
   }
 }
