@@ -1,0 +1,12 @@
+{
+  "url": "./assets/images/sprites.png",
+  "legend": {
+    "planet": {
+      "blue": [0, 0],
+      "orange": [2, 0],
+      "red": [1, 0],
+      "white": [3, 0]
+    },
+    "juggler" : {}
+  }
+}

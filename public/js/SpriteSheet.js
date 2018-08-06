@@ -1,14 +1,13 @@
-import {loadJSON, loadImage} from './loaders.js';
-import {flatten} from './util.js';
+import {loadImage, loadJSON} from './loaders.js';
 
 /**
- * @param {String} name hint for loading spec
+ * @param {String} name hint for loading sheet image
  * @return {Promise<SpriteSheet>}
  */
 export default function loadSheet(name) {
   return loadJSON(`./json/${name}.json`).then((spec) => {
     return loadImage(spec.url).then((image) => {
-      return new SpriteSheet(image, spec.map);
+      return new SpriteSheet(image, spec.legend);
     });
   });
 }
@@ -18,15 +17,26 @@ export default function loadSheet(name) {
  */
 class SpriteSheet {
   /**
-   * @constructs SpriteSheet
    * @param {Image} image of all sprites
-   * @param {Object} map contains mappings of all sprites within the sheet
+   * @param {Object} legend contains information about spritesheet layout
    */
-  constructor(image, map) {
+  constructor(image, legend) {
     this.image = image;
-    /**
-     * @prop {Map} map string to position in sheet
-     */
-    this.map = new Map(flatten(Object.values(map)));
+    this.legend = legend;
+  }
+  /**
+   * @return {Map} Map<sprite name, position in sheet>
+   */
+  get coordMap() {
+    return new Map(Object.values(this.legend).reduce((prev, curr) => {
+      return prev.concat(Object.entries(curr));
+    }, []));
+  }
+  /**
+   * @param {String} name of sprite
+   * @return {Array<Number>} position of sprite
+   */
+  coordsOf(name) {
+    return this.coordMap.get(name);
   }
 }

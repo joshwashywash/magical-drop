@@ -3,8 +3,8 @@
  */
 export default class Sprite {
   /**
-   * @param {String} name to be given to Renderer
-   * @param {Array<Number>} pos of the sprite
+   * @param {String} name indentifier for rendering
+   * @param {Array<Number>} pos of the sprite on the canvas
    * @param {Array<Number>} size of the sprite's image [width, height]
    */
   constructor(name, pos = [0, 0], size = [48, 48]) {
