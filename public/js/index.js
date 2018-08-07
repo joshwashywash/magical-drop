@@ -1,12 +1,26 @@
-// import Timer from './Timer.js';
+import Timer from './Timer.js';
 import loadSheet from './SpriteSheet.js';
 import Renderer from './Renderer.js';
-import Planet from './entities/Planet.js';
+import loadEntities from './factory.js';
 
 const context = canvas.getContext('2d');
 
-loadSheet('sprites').then((sheet) => {
+/**
+ * main function
+ * @param {CanvasRenderingContext2D} context
+ */
+async function main(context) {
+  const [sheet, factory] = await Promise.all([
+    loadSheet('sprites'),
+    loadEntities(),
+  ]);
   const renderer = new Renderer(sheet);
-  renderer.sprites.push(Planet.fromList(Object.keys(sheet.legend.planet)));
-  renderer.draw(context);
-});
+  renderer.sprites.push(factory.planet());
+  const timer = new Timer(() => {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    renderer.draw(context);
+  });
+  timer.start();
+}
+
+main(context);

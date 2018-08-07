@@ -1,9 +1,9 @@
 /**
- * @param {String} path to json file
+ * @param {String} name of json file
  * @return {Promise<JSON>}
  */
-export function loadJSON(path) {
-  return fetch(path).then((resp) => resp.json());
+export function loadJSON(name) {
+  return fetch(`./json/${name}.json`).then((resp) => resp.json());
 }
 
 /**

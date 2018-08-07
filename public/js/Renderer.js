@@ -18,7 +18,7 @@ export default class Renderer {
    */
   draw(context) {
     this.sprites.forEach((sprite) => {
-      const coords = this.sheet.coordsOf(sprite.name);
+      const coords = this.sheet.map.get(sprite.name);
       if (coords) {
         context.drawImage(
           this.sheet.image,

@@ -5,9 +5,9 @@ import {loadImage, loadJSON} from './loaders.js';
  * @return {Promise<SpriteSheet>}
  */
 export default function loadSheet(name) {
-  return loadJSON(`./json/${name}.json`).then((spec) => {
+  return loadJSON(name).then((spec) => {
     return loadImage(spec.url).then((image) => {
-      return new SpriteSheet(image, spec.legend);
+      return new SpriteSheet(image, spec.map);
     });
   });
 }
@@ -18,25 +18,10 @@ export default function loadSheet(name) {
 class SpriteSheet {
   /**
    * @param {Image} image of all sprites
-   * @param {Object} legend contains information about spritesheet layout
+   * @param {Object} map of sprites to coordinates
    */
-  constructor(image, legend) {
+  constructor(image, map) {
     this.image = image;
-    this.legend = legend;
-  }
-  /**
-   * @return {Map} Map<sprite name, position in sheet>
-   */
-  get coordMap() {
-    return new Map(Object.values(this.legend).reduce((prev, curr) => {
-      return prev.concat(Object.entries(curr));
-    }, []));
-  }
-  /**
-   * @param {String} name of sprite
-   * @return {Array<Number>} position of sprite
-   */
-  coordsOf(name) {
-    return this.coordMap.get(name);
+    this.map = new Map(Object.entries(map));
   }
 }
