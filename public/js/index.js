@@ -3,19 +3,17 @@ import loadSheet from './SpriteSheet.js';
 import Renderer from './Renderer.js';
 import loadEntities from './factory.js';
 
-const context = canvas.getContext('2d');
+/** @type {HTMLCanvasElement} */
+const canvas = document.getElementById('canvas');
 
-/**
- * main function
- * @param {CanvasRenderingContext2D} context
- */
+/** @param {CanvasRenderingContext2D} context of canvas */
 async function main(context) {
   const [sheet, factory] = await Promise.all([
     loadSheet('sprites'),
     loadEntities(),
   ]);
   const renderer = new Renderer(sheet);
-  renderer.sprites.push(factory.planet());
+  renderer.sprites.push(factory.juggler());
   const timer = new Timer(() => {
     context.clearRect(0, 0, canvas.width, canvas.height);
     renderer.draw(context);
@@ -23,4 +21,4 @@ async function main(context) {
   timer.start();
 }
 
-main(context);
+main(canvas.getContext('2d'));

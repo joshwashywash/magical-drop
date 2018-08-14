@@ -1,29 +1,31 @@
 import Sprite from '../Sprite.js';
-import {loadJSON} from '../loaders.js';
+import {loadEntity} from '../loaders.js';
 import {randomElem} from '../util.js';
 
-/**
- * loads planet entity spec
- * @return {Object} with property to create functions
- */
+/** @typedef {{name: Planet.fromSpec}} PlanetFactory */
+
+/** @return {Promise<PlanetFactory>} */
 export default function loadPlanet() {
-  const name = 'planet';
-  return loadJSON(name).then((spec) => {
-    return {
-      [name]: () => new Planet(randomElem(spec.sprites), spec.size),
-    };
-  });
+  return loadEntity('planet', Planet.fromSpec);
 }
 
-/**
- * defines behavior of the planet entity
- */
+/** defines behavior of the planet entity */
 class Planet extends Sprite {
-      /**
-       * @param {String} name of its sprite image
-       * @param {Array<Number>} size read from its json
-       */
-      constructor(name, size) {
-        super(name, size);
-      }
-    }
+  /**
+   * @param {string} name of sprite image
+   * @param {[number, number]} size [width, height]
+   */
+  constructor(name, size) {
+    super(name, size);
+  }
+
+  /** @typedef {import('../loaders.js').entityspec} spec */
+
+  /**
+   * @param {spec} spec parsed JSON
+   * @return {Planet} created from the spec
+   */
+  static fromSpec(spec) {
+    return new Planet(randomElem(spec.frames), spec.size);
+  }
+}

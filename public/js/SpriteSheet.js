@@ -1,27 +1,28 @@
 import {loadImage, loadJSON} from './loaders.js';
 
 /**
- * @param {String} name hint for loading sheet image
- * @return {Promise<SpriteSheet>}
+ * @param {string} name hint for loading sheet image
+ * @return {Promise<Sheet>}
  */
 export default function loadSheet(name) {
   return loadJSON(name).then((spec) => {
     return loadImage(spec.url).then((image) => {
-      return new SpriteSheet(image, spec.map);
+      return new Sheet(image, spec);
     });
   });
 }
 
-/**
- * acts as a texture atlas
- */
-class SpriteSheet {
+/** acts as a texture atlas */
+export class Sheet {
+  /** @typedef {import('./loaders.js').sheetspec} spec */
+
   /**
    * @param {Image} image of all sprites
-   * @param {Object} map of sprites to coordinates
+   * @param {spec} spec information about the spritesheet
    */
-  constructor(image, map) {
+  constructor(image, spec) {
     this.image = image;
-    this.map = new Map(Object.entries(map));
+    this.map = new Map(Object.entries(spec.map));
+    this.offset = spec.offset;
   }
 }

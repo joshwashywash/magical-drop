@@ -1,9 +1,11 @@
 {
   "url": "./assets/images/sprites.png",
+  "offset": [96, 96],
   "map": {
-      "blue": [0, 0],
-      "orange": [2, 0],
-      "red": [1, 0],
-      "white": [3, 0]
+    "blue": [1, 0],
+    "idle": [0, 0],
+    "orange": [3, 0],
+    "red": [2, 0],
+    "white": [4, 0]
   }
 }

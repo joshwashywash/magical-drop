@@ -1,12 +1,15 @@
-import * as loaders from './entities/index.js';
+import loadPlanet from './entities/Planet.js';
+import loadJuggler from './entities/Juggler.js';
+
+/** @typedef {Object<string, Function>} EntityFactory */
 
 /**
  * combines all factories into one object
- * @return {Object} which can create any defined entity
+ * @return {Promise<EntityFactory>} capable of making any entity
  */
 export default function loadEntities() {
-  const promises = Object.values(loaders).map((load) => load());
-  return Promise.all(promises).then((factories) => {
+  const loads = [loadPlanet, loadJuggler].map((load) => load());
+  return Promise.all(loads).then((factories) => {
     return Object.assign({}, ...factories);
   });
 }

@@ -1,15 +1,11 @@
-/**
- * responsible for rendering sprites to context
- */
+/** responsible for rendering sprites to context */
 export default class Renderer {
-  /**
-   * @param {SpriteSheet} sheet to pull images from
-   */
+  /** @typedef {import('./SpriteSheet.js').Sheet} sheet*/
+
+  /** @param {sheet} sheet to pull images from */
   constructor(sheet) {
     this.sheet = sheet;
-  /**
-   * @prop {Array<Sprite>} sprites
-   */
+    /** @type {import('./Sprite.js').default[]} */
     this.sprites = [];
   }
   /**
@@ -22,7 +18,7 @@ export default class Renderer {
       if (coords) {
         context.drawImage(
           this.sheet.image,
-          ...coords.map((coord, i) => coord * sprite.size[i % 2]),
+          ...coords.map((coord, i) => coord * this.sheet.offset[i % 2]),
           ...sprite.size,
           ...sprite.pos,
           ...sprite.size

@@ -6,7 +6,7 @@
  */
 export default class Timer {
   /**
-   * @param {Function} update callback for game updates
+   * @param {function(number): void} update callback for game updates
    * @param {Number} dt resolution of game simulation
    */
   constructor(update, dt = 1 / 60) {
@@ -15,7 +15,7 @@ export default class Timer {
     let last = 0;
     /**
      * waits until time to update
-     * @param {Number} time since script has been initiated
+     * @param {number} time since script has been initiated
      */
     this._update = (time) => {
       accumulated += (time - last) / 1000;

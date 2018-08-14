@@ -1,19 +1,13 @@
-/**
- * handles key presses by player
- */
+/** handles key presses by player */
 export default class KeyMapper {
-  /**
-   * @constructs KeyMapper
-   */
-  constructor() {
-    /**
-     * @prop {Map<String, Function>} map key-strings to callback functions
-     */
-    this.map = new Map();
+  /** @param {[string, Function][]} mappings */
+  constructor(mappings = []) {
+  /** @type {Map<string, Function>} map */
+    this.map = new Map(mappings);
   }
   /**
    * sets up keymapper to listen for events on the given window
-   * @param {Window} window to listen on
+   * @param {Window} window to attach listener on
    */
   listenOn(window) {
     window.document.addEventListener('keydown', (event) => {
