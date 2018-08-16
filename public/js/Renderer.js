@@ -20,7 +20,7 @@ export default class Renderer {
           this.sheet.image,
           ...coords.map((coord, i) => coord * this.sheet.offset[i % 2]),
           ...sprite.size,
-          ...sprite.pos,
+          ...Object.values(sprite.pos),
           ...sprite.size
         );
       }

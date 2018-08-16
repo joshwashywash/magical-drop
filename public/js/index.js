@@ -2,6 +2,7 @@ import Timer from './Timer.js';
 import loadSheet from './SpriteSheet.js';
 import Renderer from './Renderer.js';
 import loadEntities from './factory.js';
+import KeyMapper from './KeyMapper.js';
 
 /** @type {HTMLCanvasElement} */
 const canvas = document.getElementById('canvas');
@@ -13,7 +14,10 @@ async function main(context) {
     loadEntities(),
   ]);
   const renderer = new Renderer(sheet);
-  renderer.sprites.push(factory.juggler());
+  const juggler = factory.juggler();
+  renderer.sprites.push(juggler);
+  const keymapper = new KeyMapper(window);
+  keymapper.follow(juggler);
   const timer = new Timer(() => {
     context.clearRect(0, 0, canvas.width, canvas.height);
     renderer.draw(context);

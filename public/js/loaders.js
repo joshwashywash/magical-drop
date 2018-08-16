@@ -32,17 +32,12 @@ export function loadImage(path) {
   });
 }
 
-/**
- * @typedef {object} entity
- * @prop {string} name of its image within SpriteSheet
- * @prop {[number, number]} size [width, height] of its image
- * @prop {[number, number]} pos [x, y] coordinate on canvas
- */
+/** @typedef {import('./factory.js').entity} entity */
 
 /**
  * loads the entity's constructor onto an object
  * @param {string} name of the JSON file
- * @param {function(spec): entity} fromSpec returns an instance of the entity
+ * @param {function(entityspec): entity} fromSpec
  * @return {Promise<{name: fromSpec}>} the object can only create the entity
  */
 export function loadEntity(name, fromSpec) {
