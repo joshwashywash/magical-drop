@@ -1,7 +1,7 @@
 /**
  * modeled after https://github.com/meth-meth-method/game-timer
- * @example
- * const Timer = new Timer(() => (console.log('Hello World!')));
+ * @example create a timer that logs every 1/60 seconds
+ * const timer = new Timer(() => (console.log('Hello World!')));
  * timer.start();
  */
 export default class Timer {

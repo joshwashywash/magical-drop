@@ -1,27 +1,29 @@
-/** responsible for rendering sprites to context */
+/**
+ * Responsible for rendering sprites to context.
+ * Only pairs with one sprite sheet.
+ */
 export default class Renderer {
-  /** @typedef {import('./SpriteSheet.js').Sheet} sheet*/
-
-  /** @param {sheet} sheet to pull images from */
+  /** @typedef {import('./sheet.js').sheet} sheet */
+  /** @param {sheet} sheet */
   constructor(sheet) {
     this.sheet = sheet;
-    /** @type {import('./Sprite.js').default[]} */
-    this.sprites = [];
+    /** @type {import('./Entity.js').default[]} */
+    this.entities = [];
   }
   /**
    * draws all sprites to the context at their positions
    * @param {CanvasRenderingContext2D} context to render all sprites to
    */
   draw(context) {
-    this.sprites.forEach((sprite) => {
-      const coords = this.sheet.map.get(sprite.name);
-      if (coords) {
+    this.entities.forEach((entity) => {
+      const {rect} = this.sheet.sprites[entity.sprite];
+      if (rect) {
         context.drawImage(
           this.sheet.image,
-          ...coords.map((coord, i) => coord * this.sheet.offset[i % 2]),
-          ...sprite.size,
-          ...Object.values(sprite.pos),
-          ...sprite.size
+          ...Object.values(rect),
+          ...Object.values(entity.pos),
+          rect.w,
+          rect.h
         );
       }
     });
