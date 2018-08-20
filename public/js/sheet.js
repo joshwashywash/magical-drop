@@ -1,6 +1,6 @@
 import {loadImage, loadJSON} from './loaders.js';
 
-/** @typedef {object} sheet
+/** @typedef {Object} sheet
  * @prop {Image} sheet.image
  * @prop {Object<string, *>} sheet.sprites
  * @prop {string} sheet.url
@@ -10,10 +10,12 @@ import {loadImage, loadJSON} from './loaders.js';
  * @param {string} name hint for loading spec
  * @return {Promise<sheet>}
  */
-export default loadSheet = (name) => {
+const loadSheet = (name) => {
   return loadJSON(name).then((spec) => {
     return loadImage(spec.url).then((image) => {
       return Object.assign(spec, {image: image});
     });
   });
 };
+
+export default loadSheet;

@@ -1,11 +1,21 @@
-/** handles key presses by player */
-export default class Keymapper {
+/** handles key presses by player; singleton */
+class KeyMapper {
   /**
-   * initialize an empty map for key presses to functions
+   * initialize empty map<keycodes, functions>
    */
   constructor() {
   /** @type {Map<string, Function>} map */
     this.map = new Map();
+  }
+  /** @typedef {typeof import('./entities/Juggler.js').default} Juggler */
+  /**
+   * adds juggler's keymaps to this.map
+   * @param {Juggler} juggler
+   */
+  follow(juggler) {
+    this.map
+      .set('ArrowLeft', () => juggler.move(-juggler.width))
+      .set('ArrowRight', () => juggler.move(juggler.width));
   }
   /**
    * sets up keymapper to listen for events on the given window
@@ -20,3 +30,5 @@ export default class Keymapper {
     });
   }
 }
+
+export default new KeyMapper();
