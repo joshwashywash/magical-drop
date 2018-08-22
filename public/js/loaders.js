@@ -20,4 +20,5 @@ const loadImage = (path) => {
   });
 };
 
+// export together to make it clear what is exported
 export {loadJSON, loadImage};
